@@ -1,12 +1,12 @@
 from globals import BOARD_WIDTH, BOARD_HEIGHT, GAME_CONNECTION, PLAYER, AI
 from copy import deepcopy
 
+
 class Game():
 
     def __init__(self):
         self.board = [[0.0 for x in range(BOARD_HEIGHT)] for y in range(BOARD_WIDTH)]
         self.heights = [0 for y in range(BOARD_WIDTH)]
-
 
     def check_input(self, column):
         # First we need to check if column is a number
@@ -42,7 +42,8 @@ class Game():
         start_x = xpos
         start_y = ypos
         player = self.board[xpos][ypos]
-        while(start_y < BOARD_HEIGHT and start_x > 0 and player == self.board[start_x - 1][start_y - 1]):
+        while(start_y < BOARD_HEIGHT and start_x > 0 and
+              player == self.board[start_x - 1][start_y + 1]):
             start_y += 1
             start_x -= 1
         for i in range(GAME_CONNECTION):
@@ -86,7 +87,8 @@ class Game():
         return True
 
     def check_win(self, xpos, ypos):
-        if self.check_win_row(xpos, ypos) or self.check_win_diag_left(xpos, ypos) or self.check_win_column(xpos, ypos) or self.check_win_diag_right(xpos, ypos):
+        if self.check_win_row(xpos, ypos) or self.check_win_diag_left(xpos, ypos) or\
+           self.check_win_column(xpos, ypos) or self.check_win_diag_right(xpos, ypos):
             return True
         return False
 
