@@ -8,7 +8,7 @@ from MCTS import MCTS
 class Game():
 
     def __init__(self):
-        self.board = [[0.0 for x in range(BOARD_HEIGHT)] for y in range(BOARD_WIDTH)]
+        self.board = [[0 for x in range(BOARD_HEIGHT)] for y in range(BOARD_WIDTH)]
         self.heights = [0 for y in range(BOARD_WIDTH)]
         self.last_error = ""
         self.players = [AI, PLAYER]
@@ -130,8 +130,14 @@ class Game():
     def print_board(self):
         for i in reversed(range(BOARD_HEIGHT)):
             for x in range(BOARD_WIDTH):
-                print(str(self.board[x][i]) + "\t", end="")
+                print("\t" + str(self.board[x][i]), end="")
             print()
+        for x in range(BOARD_WIDTH):
+            print("\t_", end="")
+        print()
+        for x in range(BOARD_WIDTH):
+            print("\t" + str(x), end="")
+        print()
 
     def board_full(self):
         for height in self.heights:
